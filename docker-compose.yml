@@ -7,7 +7,8 @@ services:
       - MARIADB_DATABASE=bitnami_suitecrm
       - ALLOW_EMPTY_PASSWORD=yes
     volumes:
-      - 'mariadb_data:/bitnami'
+      - './db:/bitnami'
+
   suitecrm:
     image: 'bitnami/suitecrm:latest'
     environment:
@@ -20,11 +21,7 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - 'suitecrm_data:/bitnami'
+      - './bitnami:/bitnami'
     depends_on:
       - mariadb
-volumes:
-  mariadb_data:
-    driver: local
-  suitecrm_data:
-    driver: local
+
